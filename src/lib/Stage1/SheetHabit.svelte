@@ -1,9 +1,18 @@
 <script>
+    import { createEventDispatcher } from 'svelte';
+
     import Icon from 'svelte-awesome';
     import { plus, minus, asterisk, trashO } from 'svelte-awesome/icons';
     export let row;
     export let name;
     export let value;
+
+    const dispatch = createEventDispatcher();
+
+    const remove = () => {
+        dispatch('removeHabit', {name})
+    }
+
 </script>
 <tr>
     <th scope="row">{row}</th>
@@ -18,7 +27,7 @@
         {/if}
     </td>
     <td>
-        <button><span style="color: #dc3545"><Icon data={trashO}/></span></button>
+        <button on:click={remove}><span style="color: #dc3545"><Icon data={trashO}/></span></button>
     </td>
 </tr>
 <style>

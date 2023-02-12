@@ -22,7 +22,10 @@
     }
 
     const removeHabit = (event) => {
-        habits.filter(hab => hab.name !== event.details.name);
+      console.log(`Removing habit: ${event.detail.name}`)
+        habits = habits.filter(hab => hab.name !== event.detail.name);
+        habits=habits;
+        localStorage.setItem("sheetHabits", JSON.stringify(habits));
     }
 
     let addingHabit = false;
@@ -63,7 +66,7 @@
             </thead>
             <tbody>
               {#each habits as {name, value}, i}
-              <SheetHabit row={i+1} name={name} value={value}/>
+               <SheetHabit on:removeHabit={removeHabit} row={i+1} name={name} value={value}/>
               {/each}
             <tr>
                 <th scope="col" colspan="4">
