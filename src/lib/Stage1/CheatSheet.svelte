@@ -2,7 +2,16 @@
     import SheetHabit from "./SheetHabit.svelte";
     import Icon from 'svelte-awesome';
     import { plus, minus, asterisk } from 'svelte-awesome/icons';
+
     let habits = JSON.parse(localStorage.getItem("sheetHabits"));
+    if (habits == null) {
+        habits = [];
+        localStorage.setItem("sheetHabits", JSON.stringify(habits))
+    }
+    
+    function addHabit(name, value) {
+        habits.push({name: name, value: value});
+    }
 </script>
 <main>
     <div id="tracker">

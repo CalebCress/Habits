@@ -1,5 +1,5 @@
 <script>
-    import CheatSheet from "./lib/CheatSheet.svelte";
+    import CheatSheet from "./lib/Stage1/CheatSheet.svelte";
     import Icon from 'svelte-awesome';
     import { plus, minus, asterisk } from 'svelte-awesome/icons';
 </script>
