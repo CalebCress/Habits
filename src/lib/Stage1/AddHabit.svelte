@@ -22,7 +22,7 @@
     const modalSave = () => {
         if (name && value) {
             open = false;
-            dispatch('addHabit', {name: name, value:value})
+            dispatch('addHabit', {name, value})
         }
     }
 </script>
@@ -48,7 +48,7 @@
                     <select bind:value={value} class="form-select" aria-label="Default select example">
                         <option disabled selected hidden style="color: #6c757d">Type</option>
                         <option value="+">
-                            Posotive
+                            Positive
                         </option>
                         <option value="*">
                             Neutral

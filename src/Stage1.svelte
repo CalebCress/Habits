@@ -9,7 +9,7 @@
     <p id="instructions">
         Stage 1 takes place over ~2 weeks the purpose is to just get a sense of your current habits.
         To start pay attention to your natural habits every day and log them here as one of three types:
-        Posotive (<span style="color: #198754"><Icon data={plus}/></span>),
+        Positive (<span style="color: #198754"><Icon data={plus}/></span>),
         Neutral(<span style="color: #adb5bd"><Icon data={asterisk}/></span>),
         or Negative (<span style="color: #dc3545"><Icon data={minus}/></span>).
     </p>

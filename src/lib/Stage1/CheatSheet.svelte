@@ -15,9 +15,10 @@
     }
     
     const addHabit = (name, value) => {
-        habits.push({name: name, value: value});
-        habits = habits;
-        localStorage.setItem("sheetHabits", JSON.stringify(habits));
+      console.log(`Adding habit: ${name}`)
+      habits.push({name: name, value: value});
+      habits = habits;
+      localStorage.setItem("sheetHabits", JSON.stringify(habits));
     }
 
     const removeHabit = (event) => {
@@ -31,17 +32,18 @@
     const onClose = () => addingHabit = false;
 
     const onCloseAdd = (event) => {
-        addingHabit = false;
-          let error = false;
-          habits.forEach(habit => {
-            if (habit.name == event.details.name) {
-              dispatch('createError', {message: "Habit already exists"})
-              error=true;
-            }
-          });
-          if (!error){
-            addHabit(event.details.name, event.details.value);
-          }
+      console.log(`recieved dispatch to add habit: ${event.detail.name}`)
+      addingHabit = false;
+      let error = false;
+      habits.forEach(habit => {
+        if (habit.name == event.detail.name) {
+          dispatch('createError', {message: "Habit already exists"})
+          error=true;
+        }
+      });
+      if (!error){
+        addHabit(event.detail.name, event.detail.value);
+      }
   }
 </script>
 <main>
@@ -71,7 +73,7 @@
             </tbody>
         </table>
     </div>
-    <AddHabit open={addingHabit} onClosed={onClose} />
+    <AddHabit open={addingHabit} onClosed={onClose} on:addHabit={onCloseAdd}/>
 </main>
 <style>
 </style>
