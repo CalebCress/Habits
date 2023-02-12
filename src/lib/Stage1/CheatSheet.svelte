@@ -7,12 +7,16 @@
     let habits = JSON.parse(localStorage.getItem("sheetHabits"));
     if (!habits) {
         habits = [];
-        localStorage.setItem("sheetHabits", JSON.stringify(habits))
+        localStorage.setItem("sheetHabits", JSON.stringify(habits));
     }
     
     const addHabit = (name, value) => {
         habits.push({name: name, value: value});
+        habits = habits;
+        localStorage.setItem("sheetHabits", JSON.stringify(habits));
     }
+
+    
 
     let addingHabit = false;
 
@@ -20,6 +24,9 @@
 
     const onCloseAdd = (data) => {
         addingHabit = false;
+        if (data) {
+          addHabit(data.name, data.value);
+        }
     }
 
 </script>
@@ -38,9 +45,9 @@
             </tr>
             </thead>
             <tbody>
-            <SheetHabit row={1} name={"habit1"} value={"+"}/>
-            <SheetHabit row={2} name={"habit2"} value={"*"}/>
-            <SheetHabit row={3} name={"habit3"} value={"-"}/>
+              {#each habits as {name, value}, i}
+              <SheetHabit row={i+1} name={name} value={value}/>
+              {/each}
             <tr>
                 <th scope="col" colspan="3">
                   <button on:click={onOpenAdd} type="button" class="btn btn-outline-primary">Add Habit</button>
