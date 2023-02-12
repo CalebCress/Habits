@@ -2,16 +2,26 @@
     import SheetHabit from "./SheetHabit.svelte";
     import Icon from 'svelte-awesome';
     import { plus, minus, asterisk } from 'svelte-awesome/icons';
+    import AddHabit from "./AddHabit.svelte";
 
     let habits = JSON.parse(localStorage.getItem("sheetHabits"));
-    if (habits == null) {
+    if (!habits) {
         habits = [];
         localStorage.setItem("sheetHabits", JSON.stringify(habits))
     }
     
-    function addHabit(name, value) {
+    const addHabit = (name, value) => {
         habits.push({name: name, value: value});
     }
+
+    let addingHabit = false;
+
+    const onOpenAdd = () => addingHabit = true;
+
+    const onCloseAdd = (data) => {
+        addingHabit = false;
+    }
+
 </script>
 <main>
     <div id="tracker">
@@ -33,18 +43,13 @@
             <SheetHabit row={3} name={"habit3"} value={"-"}/>
             <tr>
                 <th scope="col" colspan="3">
-                    <div id="addHabit">
-                        Add Habit
-                    </div>
+                  <button on:click={onOpenAdd} type="button" class="btn btn-outline-primary">Add Habit</button>
                 </th>
             </tr>
             </tbody>
         </table>
     </div>
+    <AddHabit open={addingHabit} onClosed={onCloseAdd}/>
 </main>
 <style>
-    #addHabit:hover {
-        cursor: pointer;
-        color: grey;
-    }
 </style>
