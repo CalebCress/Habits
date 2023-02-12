@@ -1,6 +1,7 @@
 <script>
     import Icon from 'svelte-awesome';
     import { plus, minus, asterisk } from 'svelte-awesome/icons';
+    import { createEventDispatcher } from 'svelte';
 
     export let open = false;
     export let showBackdrop = true;
@@ -8,6 +9,8 @@
 
     let name;
     let value;
+
+    const dispatch = createEventDispatcher();
 
     const modalClose = () => {
         open = false;
@@ -19,9 +22,7 @@
     const modalSave = () => {
         if (name && value) {
             open = false;
-            if (onClosed) {
-                onClosed({name: name, value: value});
-            }
+            dispatch('addHabit', {name: name, value:value})
         }
     }
 </script>

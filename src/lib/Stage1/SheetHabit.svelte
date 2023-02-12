@@ -1,6 +1,6 @@
 <script>
     import Icon from 'svelte-awesome';
-    import { plus, minus, asterisk } from 'svelte-awesome/icons';
+    import { plus, minus, asterisk, trashO } from 'svelte-awesome/icons';
     export let row;
     export let name;
     export let value;
@@ -16,6 +16,9 @@
         {:else if value=="-"}
             <span style="color: #dc3545"><Icon data={minus}/></span>
         {/if}
+    </td>
+    <td>
+        <button><span style="color: #dc3545"><Icon data={trashO}/></span></button>
     </td>
 </tr>
 <style>

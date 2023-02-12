@@ -13,7 +13,7 @@
         Neutral(<span style="color: #adb5bd"><Icon data={asterisk}/></span>),
         or Negative (<span style="color: #dc3545"><Icon data={minus}/></span>).
     </p>
-    <CheatSheet/>
+    <CheatSheet on:createError/>
 </main>
 <style>
     #instructions {
