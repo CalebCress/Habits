@@ -1,6 +1,21 @@
 <script>
+  import Welcome from "./Welcome.svelte";
   import Stage1 from "./Stage1.svelte";
+  import DiscussionQuestions from "./DiscussionQuestions.svelte";
+  import Stage2 from "./Stage2.svelte";
   import Error from "./lib/Error.svelte";
+
+  let currentStage = localStorage.getItem('currentStage');
+
+  if(!currentStage) {
+    currentStage = "welcome";
+    localStorage.setItem('currentStage', currentStage);
+  }
+
+  const setStage = (event) => {
+    currentStage = event.detail.stage;
+    localStorage.setItem('currentStage', currentStage);
+  }
 
   let errors = [];
   let errorIdIncrement = 0;
@@ -15,6 +30,7 @@
   const removeError = (event) => {
     errors = errors.filter(err => err.id !== event.detail.id);
   }
+
 </script>
 
 <main>
@@ -22,7 +38,15 @@
     <Error on:removeError={removeError} message={error.message} id={error.id}/>
   {/each}
   <div id="main">
-    <Stage1 on:createError={createError}/>
+    {#if currentStage === "welcome"}
+      <Welcome on:setStage={setStage}/>
+    {:else if currentStage === "stage1"}
+      <Stage1 on:createError={createError} on:setStage={setStage}/>
+    {:else if currentStage === "discussion"}
+      <DiscussionQuestions/>
+    {:else if currentStage === "stage2"}
+      <Stage2/>
+    {/if}
   </div>
 </main>
 
