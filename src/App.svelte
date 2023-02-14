@@ -4,6 +4,7 @@
   import DiscussionQuestions from "./DiscussionQuestions.svelte";
   import Stage2 from "./Stage2.svelte";
   import Error from "./lib/Error.svelte";
+  import Nav from "./lib/Nav.svelte";
 
   let currentStage = localStorage.getItem('currentStage');
 
@@ -38,6 +39,7 @@
     <Error on:removeError={removeError} message={error.message} id={error.id}/>
   {/each}
   <div id="main">
+    <Nav/>
     {#if currentStage === "welcome"}
       <Welcome on:setStage={setStage}/>
     {:else if currentStage === "stage1"}
