@@ -39,7 +39,7 @@
     <Error on:removeError={removeError} message={error.message} id={error.id}/>
   {/each}
   <div id="main">
-    <Nav/>
+    <Nav on:setStage={setStage}/>
     {#if currentStage === "welcome"}
       <Welcome on:setStage={setStage}/>
     {:else if currentStage === "stage1"}

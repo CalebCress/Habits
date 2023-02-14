@@ -1,4 +1,8 @@
 <script>
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
+
     let navOpen = false;
     
     function handleNav() {
@@ -10,15 +14,35 @@
         if (e.code === "F1") {
             navOpen = !navOpen;
         }
-    }	
-</script>
+    }
 
-<div id="mySidenav" class="sidenav" class:open={navOpen}>
+    const toWelcome = () => {
+        dispatch('setStage', { stage: 'welcome' })
+        navOpen = false;
+    }
+
+    const toStage1 = () => {
+        dispatch('setStage', { stage: 'stage1' })
+        navOpen = false;
+    }
+
+    const toDiscussion = () => {
+        dispatch('setStage', { stage: 'discussion' })
+        navOpen = false;
+    }
+
+    const toStage2 = () => {
+        dispatch('setStage', { stage: 'stage2' })
+        navOpen = false;
+    }
+</script>   
+
+<div class="sidenav" class:open={navOpen}>
     <button class="closebtn navbtn" on:click={handleNav}>&times;</button>
-    <button class="navbtn">About</button>
-    <button class="navbtn">Services</button>
-    <button class="navbtn">Clients</button>
-    <button class="navbtn">Contact</button>
+    <button class="navbtn" on:click={toWelcome}>Welcome</button>
+    <button class="navbtn" on:click={toStage1}>Stage&nbsp;1</button>
+    <button class="navbtn" on:click={toDiscussion}>Discussion</button>
+    <button class="navbtn" on:click={toStage2}>Stage&nbsp;2</button>
 </div>
 
 <!-- Use Menu Icon to open the sidenav -->
@@ -103,6 +127,7 @@
         border: none;
         cursor: pointer;
         outline: inherit;
+        overflow-x: hidden;
     }
     
     .open {
