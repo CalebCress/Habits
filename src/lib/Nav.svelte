@@ -131,7 +131,7 @@
     }
     
     .open {
-        width: 20%;
+        width: 200px;
     }	
     
     /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

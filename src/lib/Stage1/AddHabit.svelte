@@ -1,6 +1,4 @@
 <script>
-    import Icon from 'svelte-awesome';
-    import { plus, minus, asterisk } from 'svelte-awesome/icons';
     import { createEventDispatcher } from 'svelte';
 
     export let open = false;

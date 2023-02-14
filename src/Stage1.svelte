@@ -26,6 +26,7 @@
 </main>
 <style>
     #instructions {
+        padding-top: 10px;
         padding-left: 12%;
         padding-right: 12%;
         text-align: left;
@@ -33,5 +34,4 @@
     #next {
         text-align: right;
     }
-
 </style>
