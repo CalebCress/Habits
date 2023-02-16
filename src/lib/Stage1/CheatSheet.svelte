@@ -15,7 +15,7 @@
     }
     
     const addHabit = (name, value) => {
-      console.log(`Adding habit: ${name}`)
+      // console.log(`Adding habit: ${name}`)
       habits.push({name: name, value: value});
       habits = habits;
       localStorage.setItem("sheetHabits", JSON.stringify(habits));
@@ -47,7 +47,7 @@
       if (!error){
         addHabit(event.detail.name, event.detail.value);
       }
-  }
+    }
 </script>
 <main>
     <div id="tracker">

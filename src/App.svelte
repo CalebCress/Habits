@@ -47,7 +47,7 @@
     {:else if currentStage === "discussion"}
       <DiscussionQuestions/>
     {:else if currentStage === "stage2"}
-      <Stage2/>
+      <Stage2 on:createError={createError}/>
     {/if}
   </div>
 </main>

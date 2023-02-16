@@ -12,16 +12,20 @@
 
     const modalClose = () => {
         open = false;
+        name = null;
+        value = null;
         if (onClosed) {
             onClosed();
         }
     }
 
     const modalSave = () => {
-        if (name && value) {
-            open = false;
-            dispatch('addHabit', {name, value})
-        }
+      if (name && value) {
+          open = false;
+          dispatch('addHabit', {name, value})
+      }
+      name = null;
+      value = null;
     }
 </script>
 
