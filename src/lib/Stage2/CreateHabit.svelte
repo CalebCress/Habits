@@ -17,10 +17,18 @@
 
   const dispatch = createEventDispatcher();
 
+  const clear = () => {
+    name = null;
+    implementation = false;
+    stacking = false;
+    template = "add";
+    implementationTime = "";
+    implementationLocation = "";
+    stackingHabit = "";
+  }
+
   const modalClose = () => {
-      open = false;
-      name = null;
-      template = "add";
+      clear()
       if (onClosed) {
           onClosed();
       }
@@ -42,19 +50,14 @@
           }
         })
     }
-    name = null;
-    implementation = false;
-    stacking = false;
-    template = "add";
-    implementationTime = "";
-    implementationLocation = "";
-    stackingHabit = "";
+    clear()
   }
 
   const addTemplate = () => {
-    if (template = "implementationIntetion") {
+    console.log(template)
+    if (template === "implementationIntention") {
       implementation = true;
-    } else if (template = "habitStacking") {
+    } else if (template === "habitStacking") {
       stacking = true;
     }
   }

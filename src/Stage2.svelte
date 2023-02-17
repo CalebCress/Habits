@@ -15,7 +15,7 @@
       habits = [];
       localStorage.setItem("habits", JSON.stringify(habits));
   }
-  console.log(habits)
+  $: localStorage.setItem("habits", JSON.stringify(habits));
   let month =  new Date().getMonth();
   
   let creatingHabit = false;
@@ -23,9 +23,11 @@
 
   const onClose = () => creatingHabit = false;
 
+  const defaultChecked = Array(12).fill([]);
+
   const addHabit = (name, implementation, stacking) => {
     console.log(`Adding habit: ${name}`)
-    habits.push({name, implementation, stacking, check: Array(12)});
+    habits.push({name, implementation, stacking, check: defaultChecked});
     habits = habits;
     localStorage.setItem("habits", JSON.stringify(habits));
   }
@@ -85,7 +87,7 @@
         <tr>
           <th scope="col">Habit</th>
           {#each Array(months[month].days) as _, i}
-            <th scope="col">{i}</th>
+            <th scope="col">{i+1}</th>
           {/each}
         </tr>
       </thead>
@@ -94,7 +96,7 @@
           <tr>
             <th scope="row">{habit.name}</th>
               {#each Array(months[month].days) as _, i}
-                <th scope="col">  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></th>
+                <th scope="col"><input bind:checked={habit.check[month][i]} class="form-check-input" type="checkbox" value="{i}" id="flexCheckDefault"></th>
               {/each}
             </tr>
           {/each}
