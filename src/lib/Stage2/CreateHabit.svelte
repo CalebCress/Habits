@@ -28,8 +28,6 @@
 
   const modalSave = () => {
     open = false;
-    name = null;
-    template = "add";
     if (name) {
         open = false;
         dispatch('createHabit', {
@@ -47,6 +45,7 @@
     name = null;
     implementation = false;
     stacking = false;
+    template = "add";
     implementationTime = "";
     implementationLocation = "";
     stackingHabit = "";

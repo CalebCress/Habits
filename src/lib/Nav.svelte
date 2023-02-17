@@ -57,8 +57,9 @@
     /* Hamburger Menu icon */	
     .navContainer {
         position: absolute;
-        left: 0;
+        left: 60px;
         display: inline-block;
+        z-index: 3;
         cursor: pointer;
     }
     
@@ -87,7 +88,7 @@
         height: 100%; 
         width: 0; /* 0 width - change this with JavaScript */
         position: fixed;
-        z-index: 1;
+        z-index: 5;
         top: 0;
         left: 0;
         background-color: #111; 
