@@ -7,7 +7,7 @@
     let habits = JSON.parse(localStorage.getItem("habits"));
     if (!habits) {
         habits = [];
-        localStorage.setItem("habits", JSON.stringify(habits));
+        // localStorage.setItem("habits", JSON.stringify(habits));
     }
 
     let creatingHabit = false;
@@ -19,7 +19,7 @@
       // console.log(`Adding habit: ${name}`)
       habits.push({name: name, value: value});
       habits = habits;
-      localStorage.setItem("habits", JSON.stringify(habits));
+      // localStorage.setItem("habits", JSON.stringify(habits));
     }
 
     const onCloseCreate = (event) => {
@@ -42,16 +42,16 @@
 <main>
     <h1>Stage 2</h1>
     <p id="instructions">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde ratione recusandae eos dolorum deleniti nemo labore ut, praesentium nesciunt perferendis ullam, placeat quo vitae ipsam doloremque voluptas minus? Ea, tempora!
+      Create and track your habits here optionally choose to add a habit template(s)
     </p>
     <button on:click={onOpenCreate} type="button" class="btn btn-primary">New Habit</button>
     <CreateHabit open={creatingHabit} onClosed={onClose} on:addHabit={onCloseCreate}/>
 </main>
 <style>
-    #instructions {
-        padding-top: 10px;
-        padding-left: 12%;
-        padding-right: 12%;
-        text-align: left;
-    }
+  #instructions {
+    padding-top: 10px;
+    padding-left: 12%;
+    padding-right: 12%;
+    text-align: left;
+  }
 </style>

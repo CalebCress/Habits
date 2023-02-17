@@ -1,10 +1,13 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Welcome from "./Welcome.svelte";
   import Stage1 from "./Stage1.svelte";
   import DiscussionQuestions from "./DiscussionQuestions.svelte";
   import Stage2 from "./Stage2.svelte";
   import Error from "./lib/Error.svelte";
   import Nav from "./lib/Nav.svelte";
+
+  const dispatch = createEventDispatcher();
 
   let currentStage = localStorage.getItem('currentStage');
 

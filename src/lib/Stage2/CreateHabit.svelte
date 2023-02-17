@@ -1,38 +1,54 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import Stacking from './Stacking.svelte';
+  import Implementation from './Implementation.svelte';
 
   export let open = false;
   export let showBackdrop = true;
   export let onClosed;
+  let implementation = false;
+  let stacking = true;
+  let implementationTime = "";
+  let implementationLocation = "";
+  let stackingHabit = "";
 
   let name;
-  let value;
+  let template;
 
   const dispatch = createEventDispatcher();
 
   const modalClose = () => {
       open = false;
       name = null;
-      value = null;
+      template = "add";
       if (onClosed) {
           onClosed();
       }
   }
 
   const modalSave = () => {
-    if (name && value) {
+    open = false;
+    name = null;
+    template = "add";
+    if (name) {
         open = false;
-        dispatch('addHabit', {name, value})
+        dispatch('createHabit', {name})
     }
     name = null;
-    value = null;
+  }
+
+  const addTemplate = () => {
+    if (template = "implementationIntetion") {
+      implementation = true;
+    } else if (template = "habitStacking") {
+      stacking = true;
+    }
   }
 </script>
 
 {#if open}
 <div class="modal" id="sampleModal" tabindex="-1"
-  role="dialog" aria-labelledby="sampleModalLabel" aria-hidden={false}
->
+  role="dialog" aria-labelledby="sampleModalLabel" aria-hidden={false}>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -42,25 +58,30 @@
         </button>
       </div>
       <div class="modal-body">
-          <div class="row">
-              <div class="col">
-                  <input bind:value={name} type="text" class="form-control" placeholder="Habit" aria-label="Habit" aria-describedby="basic-addon1">
-              </div>
-              <div class="col">
-                  <select bind:value={value} class="form-select" aria-label="Default select example">
-                      <option disabled selected hidden style="color: #6c757d">Type</option>
-                      <option value="+">
-                          Positive
-                      </option>
-                      <option value="*">
-                          Neutral
-                      </option>
-                      <option value="-">
-                          Negative
-                      </option>
-                  </select>
-              </div>
-            </div>
+        <div class="inputRow form-floating">
+          <input required bind:value={name} id="name" type="text" class="form-control" placeholder="Habit" aria-label="Habit" aria-describedby="basic-addon1">
+          <label for="name">Habit</label>
+        </div>
+        {#if implementation}
+          <div class="inputRow">
+            <Implementation name={name} bind:time={implementationTime} bind:location={implementationLocation}/>
+          </div>
+        {/if}
+        {#if stacking}
+          <div class="inputRow">
+            <Stacking name={name} bind:habit={stackingHabit}/>
+          </div>
+        {/if}
+        <div class="inputRow">
+          <div class="input-group mb-3">
+            <select bind:value={template} class="form-select" aria-label="Default select example">
+              <option value="add" disabled selected>Add Template</option>
+              <option value="implementationIntention">Implementation Intention</option>
+              <option value="habitStacking">Habit Stacking</option>
+            </select>
+            <button on:click={addTemplate} class="btn btn-outline-primary" type="button" id="button-addon2">Add Template</button>
+          </div>
+        </div>  
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss= "modal" on:click={modalClose}>Close</button>
@@ -75,7 +96,10 @@
 {/if}
 
 <style>
-.modal {
-  display: block;
-}
+  .modal {
+    display: block;
+  }
+  .inputRow {
+    margin:10px;
+  }
 </style>
