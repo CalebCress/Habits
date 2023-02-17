@@ -7,7 +7,7 @@
   export let showBackdrop = true;
   export let onClosed;
   let implementation = false;
-  let stacking = true;
+  let stacking = false;
   let implementationTime = "";
   let implementationLocation = "";
   let stackingHabit = "";
@@ -32,9 +32,24 @@
     template = "add";
     if (name) {
         open = false;
-        dispatch('createHabit', {name})
+        dispatch('createHabit', {
+          name,
+          implementation: {
+            exists: implementation,
+            time: implementationTime,
+            location: implementationLocation
+          }, stacking: {
+            exists: stacking,
+            habit: stackingHabit
+          }
+        })
     }
     name = null;
+    implementation = false;
+    stacking = false;
+    implementationTime = "";
+    implementationLocation = "";
+    stackingHabit = "";
   }
 
   const addTemplate = () => {

@@ -7,7 +7,7 @@
     let habits = JSON.parse(localStorage.getItem("habits"));
     if (!habits) {
         habits = [];
-        // localStorage.setItem("habits", JSON.stringify(habits));
+        localStorage.setItem("habits", JSON.stringify(habits));
     }
 
     let creatingHabit = false;
@@ -15,11 +15,11 @@
 
     const onClose = () => creatingHabit = false;
 
-    const addHabit = (name, value) => {
+    const addHabit = (name, implementation, stacking) => {
       // console.log(`Adding habit: ${name}`)
-      habits.push({name: name, value: value});
+      habits.push({name, implementation, stacking});
       habits = habits;
-      // localStorage.setItem("habits", JSON.stringify(habits));
+      localStorage.setItem("habits", JSON.stringify(habits));
     }
 
     const onCloseCreate = (event) => {
@@ -28,12 +28,12 @@
       let error = false;
       habits.forEach(habit => {
         if (habit.name == event.detail.name) {
-          dispatch('createError', {message: "Habit already exists"})
+          dispatch('createError', {message: "Habit already exists"});
           error=true;
         }
       });
       if (!error){
-        addHabit(event.detail.name, event.detail.value);
+        addHabit(event.detail.name, event.detail.implementation, event.detail.stacking);
       }
     }
 
