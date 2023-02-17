@@ -10,6 +10,11 @@
     const toStage1 = () => {
         dispatch('setStage', {stage: 'stage1'});
     }
+
+    const reset = () => {
+        localStorage.clear();
+        localStorage.setItem('currentStage', 'welcome');
+    }
 </script>
 
 <main>
@@ -23,10 +28,15 @@
     </p>
     <button on:click={toStage1} class="btn btn-primary">Get Started</button>
     <button on:click={toStage2} class="btn btn-success">I have my own atomic habits</button>
+    <p id="resetInst">Click this button to reset after bug fixes:</p>
+    <button on:click={reset} class="btn btn-danger">Reset</button>
 </main>
 <style>
     #instructions {
         padding-left: 12%;
         padding-right: 12%;
+    }
+    #resetInst {
+        padding-top: 50px;
     }
 </style>
