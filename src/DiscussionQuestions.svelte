@@ -1,7 +1,12 @@
 <script>
 // @ts-nocheck
-
+    import { createEventDispatcher } from 'svelte';
     import {disQuestions} from './questions';
+
+    const dispatcher = createEventDispatcher();
+    const toStage2 = () => {
+        dispatcher('setStage', {stage: 'stage2'})
+    }
 
     let questions = JSON.parse(localStorage.getItem('discussion'));
     if (!questions) {
@@ -28,6 +33,9 @@
             </div>
         </div>
     {/each}
+    <div id="next">
+        <button class="btn btn-primary" on:click={toStage2}>Next</button>
+    </div>
 </main>
 <style>
     main {
@@ -44,5 +52,8 @@
     #instructions {
         padding: 10px;
         text-align: left;
+    }
+    #next {
+        text-align: right;
     }
 </style>

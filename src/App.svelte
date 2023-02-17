@@ -49,7 +49,7 @@
     {:else if currentStage === "stage1"}
       <Stage1 on:createError={createError} on:setStage={setStage}/>
     {:else if currentStage === "discussion"}
-      <DiscussionQuestions/>
+      <DiscussionQuestions on:setStage={setStage}/>
     {:else if currentStage === "stage2"}
       <Stage2 on:createError={createError}/>
     {/if}
