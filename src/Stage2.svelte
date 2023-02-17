@@ -16,6 +16,7 @@
       localStorage.setItem("habits", JSON.stringify(habits));
   }
   $: localStorage.setItem("habits", JSON.stringify(habits));
+  $: console.log(habits)
   let month =  new Date().getMonth();
   
   let creatingHabit = false;
@@ -23,7 +24,11 @@
 
   const onClose = () => creatingHabit = false;
 
-  const defaultChecked = Array(12).fill([]);
+  let defaultChecked = []
+
+  months.forEach((m,i) => {
+    defaultChecked[i] = Array(m.days).fill(false)
+  })
 
   const addHabit = (name, implementation, stacking) => {
     console.log(`Adding habit: ${name}`)
