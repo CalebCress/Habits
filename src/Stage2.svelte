@@ -5,6 +5,7 @@
   import { Icon } from "svelte-awesome";
   import chevronLeft from 'svelte-awesome/icons/chevronLeft';
   import chevronRight from 'svelte-awesome/icons/chevronRight';
+  import trashO from 'svelte-awesome/icons/trashO'
 
   import { months } from "./months";
 
@@ -67,6 +68,12 @@
     }
   }
 
+  const removeHabit = (habitName) => {
+    habits = habits.filter(hab => hab.name !== habitName);
+    habits=habits;
+    localStorage.setItem("habits", JSON.stringify(habits));
+  }
+
 </script>
 
 <main>
@@ -103,6 +110,7 @@
               {#each Array(months[month].days) as _, i}
                 <th scope="col"><input bind:checked={habits[h].check[month][i]} class="form-check-input" type="checkbox" value="{i}" id="flexCheckDefault"></th>
               {/each}
+              <button on:click={() => { removeHabit(habit.name)}}><span style="color: #dc3545"><Icon data={trashO}/></span></button>
             </tr>
           {/each}
       </tbody>
