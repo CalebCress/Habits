@@ -97,11 +97,11 @@
         </tr>
       </thead>
       <tbody>
-          {#each habits as habit}
-          <tr>
-            <th scope="row">{habit.name}</th>
+          {#each habits as habit, h}
+            <tr>
+              <th scope="row">{habit.name}</th>
               {#each Array(months[month].days) as _, i}
-                <th scope="col"><input bind:checked={habit.check[month][i]} class="form-check-input" type="checkbox" value="{i}" id="flexCheckDefault"></th>
+                <th scope="col"><input bind:checked={habits[h].check[month][i]} class="form-check-input" type="checkbox" value="{i}" id="flexCheckDefault"></th>
               {/each}
             </tr>
           {/each}
